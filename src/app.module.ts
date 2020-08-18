@@ -6,6 +6,7 @@ import { join } from 'path';
 
 import { config } from './config';
 import { DatabaseConfig } from './database.config';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { DatabaseConfig } from './database.config';
       imports: [ConfigModule],
       useClass: DatabaseConfig,
     }),
+    UserModule,
   ],
   controllers: [],
   providers: [],

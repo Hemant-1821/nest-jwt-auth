@@ -9,6 +9,7 @@
 export interface User {
     id: string;
     email: string;
+    password: string;
 }
 
 export interface IQuery {
@@ -16,5 +17,6 @@ export interface IQuery {
 }
 
 export interface IMutation {
-    login(email?: string): string | Promise<string>;
+    login(email?: string, password?: string): string | Promise<string>;
+    Signup(email?: string, password?: string): User | Promise<User>;
 }

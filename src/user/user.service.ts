@@ -11,18 +11,20 @@ export class UserService {
         private userRepo: Repository<UserEntity>
     ) {}
 
-    createToken({ id, email }: UserEntity) {
+    createToken({ id, email}: UserEntity) {
         return jwt.sign({ id, email }, 'secret');
     }
 
-    createUser(email: string){
+    createUser(email: string, password: string){
         const user = new UserEntity();
-        user.email = email
+        user.email = email;
+        user.password = password;
         const manager = getMongoManager();
         return manager.save(user);
     }
 
     getUserByEmail(email: string){
-        return this.userRepo.findOne({ email });
+        const manager = getMongoManager();
+        return manager.findOne(UserEntity, { email: email });
     }
 }
